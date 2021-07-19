@@ -68,7 +68,7 @@ const joinRoomBtn = () => {
                 location.replace(result.url);
             }
             else{
-                $("#joinToast").html(result.message);
+                $("#joinToastInside").html(result.message);
                 $("#joinToast").toast("show");
             }
         })
@@ -114,7 +114,7 @@ const createRoom = () => {
                 location.replace(result.url);
             }
             else{
-                $("#createToast").html(result.message);
+                $("#createToastInside").html(result.message);
                 $("#createToast").toast("show");
             }
         })

@@ -73,6 +73,14 @@ function encodeImageFileAsURL() {
 }
 const sendfiles = (fileurl, type) => {
   if(!fileurl) return false;
+  const div = document.createElement("div");
+  div.className = "d-flex justify-content-center";
+  div.id="spinner";
+  div.innerHTML=`
+  <div class="spinner-grow text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>`;
+  document.getElementById("scrollMsg").append(div);
   socket.emit('chatMessage', { type:type, content:fileurl, room, token });
   document.getElementById("inputFileToLoad").value='';
   $("#dropdownMenuButton1").dropdown("hide");
@@ -151,6 +159,7 @@ const sendfiles = (fileurl, type) => {
     document.getElementById("messageList").append(div);
     window.scrollTo(0, $("#scrollMsg")[0].scrollHeight)
     $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
+    document.getElementById("spinner").remove()
   }
   
   // Add room name to DOM

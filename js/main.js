@@ -130,7 +130,7 @@ const sendfiles = (fileurl, type) => {
     if(message.socketId=='bot'){
       div.className = "p-2 bd-highlight align-self-center"
       div.innerHTML = `
-          <div class="card">
+          <div class="card card-bot">
               <div class="card-body-bot">
                   <p class="text text-bot" ${align}><i class="fas fa-robot" style="color:white;"></i> ${message.text}<span> ~${message.time}</span></p>
               </div>

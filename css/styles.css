@@ -23,10 +23,10 @@
   /* opacity:0.5 */
 }
 #scrollMsg {
-  height: 81.5vh;
+  height: 83vh;
 }
 .body-bg-overlay {
-  background-color: rgb(0, 0, 0, 0.5);
+  background-color: rgba(19, 28, 33, 0.8);
 }
 /* personal background and hover styles */
 .my-bg-blue-dark {
@@ -154,6 +154,13 @@ form:before {
 .card {
   border-radius: 15px;
   max-width: 60vw;
+  border: 0px;
+  display: inline-block;
+  background-color: var(--light-color);
+}
+.card-bot {
+  border-radius: 15px;
+  max-width: 98vw;
   border: 0px;
   display: inline-block;
   background-color: var(--light-color);

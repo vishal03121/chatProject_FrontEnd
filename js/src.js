@@ -48,7 +48,7 @@ const joinRoomBtn = () => {
     }
     if(valid){
         let status;
-        fetch("https://classifiedchat.herokuapp.com/joinRoom", {
+        fetch("https://wacloneapi.herokuapp.com/joinRoom", {
         method: "PUT",
         body: JSON.stringify({
             room: room,
@@ -94,7 +94,7 @@ const createRoom = () => {
     }
     if(valid){
         let status;
-        fetch("https://classifiedchat.herokuapp.com/createRoom", {
+        fetch("https://wacloneapi.herokuapp.com/createRoom", {
         method: "PUT",
         body: JSON.stringify({
             room: room,

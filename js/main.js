@@ -1,4 +1,4 @@
-const socket = io("https://classifiedchat.herokuapp.com/",{transports: ['websocket'], upgrade: false});
+const socket = io("https://wacloneapi.herokuapp.com/",{transports: ['websocket'], upgrade: false});
 const { username, room, token } = Qs.parse(location.search, {
     ignoreQueryPrefix: true,
 });

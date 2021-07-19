@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/logos_images/icon.ico">
+    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+      crossorigin="anonymous"
+    />
+    <title>Room</title>
+</head>
+
+<body class="body-bg">
+  <div class="body-bg-overlay">
+    <nav class="navbar navbar-light my-bg-blue-dark-no-hover outer-colors sticky-top">
+        <div class="container-fluid">
+
+            <span class="navbar-brand text-white">
+                <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <span id="roomName"><i class="fas fa-smile"></i></span>
+            </span>
+            <button class="btn btn-light btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#leaveRoomModal">Leave Room</button>
+        </div>
+    </nav>
+    <!-- --------------------------------view users canvas start--------------------------------------- -->
+    <div class="offcanvas offcanvas-start offcanvas-bg" tabindex="-1" id="offcanvasWithBackdrop"
+        aria-labelledby="offcanvasWithBackdropLabel">
+        <div class="offcanvas-header offcanvas-bg">
+            <h5 class="offcanvas-title offcanvas-bg-hover" id="offcanvasWithBackdropLabel">Participants</h5>
+            <button type="button" class="btn-close text-reset btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body offcanvas-bg">
+            <ul class="list-group list-group-flush" id=userList></ul>
+        </div>
+    </div>
+    <!-- --------------------------------view users canvas end------------------------------------------------- -->
+    <div class="overflow-auto mb-4" id="scrollMsg">
+        <div class="d-flex flex-column bd-highlight mb-3 chat-message" id="messageList"></div>
+        <center>
+          <div class="form-group mb-4">
+              <div class="toast align-items-center text-white outer-colors hide" id="error" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="d-flex">
+                    <div class="toast-body outer-colors" id="errorInside">
+                      File size Must not be Greater than 500KB.
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                </div>
+            </div>
+      </center>
+    </div>
+    
+    <!-- --------------------------------------------message send start------------------------------------------------------- -->
+    
+    <div class="input-group p-3 fixed-bottom body-bg-overlay">
+      <div class="dropup">
+        <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <span style="color:white"><i class="fas fa-plus"></i></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><input class="form-control" type="file" accept="image/jpg, image/jpeg, image/png, video/mp4, audio/mp3" id="inputFileToLoad" onchange="encodeImageFileAsURL()"></li>
+        </ul>
+      </div>
+        <input type="text" class="form-control" placeholder="Type Message" id="msg">
+        <span class="input-group-text btn-secondary" id="send" onclick="sendMsg()">Send &nbsp;<i class="fas fa-paper-plane"></i></span>
+    </div>
+    <!-- -------------------------------------------------mesage send end----------------------------------------------------- -->
+  </div>
+
+    <div class="modal fade" id="leaveRoomModal" tabindex="-1" aria-labelledby="leaveRoomModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header dark-bg">
+              <h5 class="modal-title dark-bg" id="leaveRoomModal">Confirm</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body dark-bg">
+              Are You sure you want to leave room?
+            </div>
+            <div class="modal-footer dark-bg">
+              <button type="button" class="btn btn-success btn-sm my-bg-blue-dark outer-colors" id="leave-btn">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="imgModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body dark-bg">
+                <button type="button" class="btn-close btn-close-white my-class-float-right" data-bs-dismiss="modal" aria-label="Close"></button>
+                <img class="img-fluid mx-auto d-block" id="img01">
+              </div>
+          </div>
+        </div>
+      </div>
+
+    
+
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://classifiedchat.herokuapp.com/socket.io/socket.io.js"></script>
+    <script src="./jquery/jquery.min.js"></script>
+    <script src="./bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/src.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+:root {
+  --dark-color-a: rgb(102, 122, 255);
+  --dark-color-b: rgb(115, 134, 255);
+  --light-color: rgb(230, 233, 255);
+  --success-color: #5cb85c;
+  --error-color: #d9534f;
+}
+
+/* bootstrap basic setup */
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+.dark-bg,
+.dark-bg:hover {
+  background-color: rgb(19, 28, 33);
+  border-color: rgb(19, 28, 33);
+  color: #ffffff;
+}
+.body-bg {
+  background-color: rgb(19, 28, 33, 0.8);
+  background: #131c21 url("../images/logos_images/bg.png");
+  /* background-color: rgb(0, 0, 0, 1); */
+  /* opacity:0.5 */
+}
+#scrollMsg {
+  height: 81.5vh;
+}
+.body-bg-overlay {
+  background-color: rgb(0, 0, 0, 0.5);
+}
+/* personal background and hover styles */
+.my-bg-blue-dark {
+  background-color: #0052cc;
+  color: #ffffff;
+}
+.my-bg-blue-dark-no-hover {
+  background-color: #0052cc;
+  color: #ffffff;
+}
+.my-bg-blue-dark :hover {
+  background-color: #0d6efd;
+  color: #ffffff;
+}
+.my-color-white {
+  color: #ffffff;
+}
+.hover-bg-blue :hover {
+  background-color: #0d6efd;
+  color: #ffffff;
+}
+.hover-bg-light :hover {
+  color: black;
+}
+.link-color-black,
+:hover {
+  color: #212529;
+  text-decoration: none;
+}
+.my-class-orders-color-final {
+  background-color: rgba(32, 201, 151, 0.2);
+}
+.my-class-orders-color-confirmed {
+  background-color: rgba(13, 202, 240, 0.2);
+}
+.my-class-orders-color-pending {
+  background-color: rgba(255, 193, 7, 0.2);
+}
+.my-class-orders-color-canceled {
+  background-color: rgba(220, 53, 69, 0.2);
+}
+.my-text-dark-bold-color {
+  color: #000;
+  font-weight: 500;
+}
+.my-bg-red-warn {
+  background-color: rgba(220, 53, 69, 1);
+}
+.my-bg-red-warn :hover {
+  background-color: rgba(220, 53, 69, 0.4);
+}
+
+/* for zooming on hovering in images */
+.zoom {
+  transition: transform 0.1s; /* Animation */
+}
+.zoom:hover {
+  transform: scale(
+    1.1
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.my-class-float-right {
+  float: right;
+}
+.my-class-float-left {
+  float: left;
+}
+
+.cover {
+  background: #222 url("https://unsplash.it/1920/1080/?random") center center
+    no-repeat;
+  background-size: cover;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.cover-caption {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* only used for background overlay not needed for centering */
+form:before {
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  border-radius: 10px;
+}
+
+/*--------------------------messages style start---------------------------------*/
+.text {
+  margin-bottom: 0px;
+}
+.chat-message {
+  padding: 4px;
+  padding-top: 30px;
+}
+.meta {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000000;
+  opacity: 0.7;
+  margin-bottom: 0px;
+}
+.meta span {
+  color: #777;
+  font-size: 12px;
+  font-weight: lighter;
+}
+/* .col{
+    padding: 30px;
+    padding-bottom: 0px;
+    border-radius: 15px;
+} */
+.card {
+  border-radius: 15px;
+  max-width: 60vw;
+  border: 0px;
+  display: inline-block;
+  background-color: var(--light-color);
+}
+.card-body {
+  border-radius: 15px;
+  padding: 4px;
+  background-color: var(--light-color);
+  max-width: 60vw;
+}
+.msg {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--dark-color-b);
+  opacity: 0.7;
+  /* margin-bottom: 7px; */
+}
+
+.my-message {
+  background-color: rgba(60, 179, 98, 0.3);
+}
+.offcanvas-bg {
+  color: #ffffff;
+  background-color: rgb(22, 23, 23);
+  border-color: #ffffff;
+}
+.offcanvas-bg-hover:hover {
+  color: #ffffff;
+}
+.outer-colors, .outer-colors:hover {
+  background-color: #00bfa5;
+  color: #ffffff;
+}
+.card-body-bot {
+  padding: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 2px;
+  background-color: rgba(69, 69, 69, 0.596);
+  max-width: 98vw;
+}
+.text-bot {
+  /* font-size: 15px; */
+  font-weight: bold;
+  font-style: italic;
+  /* color: var(--dark-color-b); */
+  color: #ffffff;
+  opacity: 0.7;
+  /* margin-bottom: 7px; */
+}
+.text-bot span {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: lighter;
+}
+/*--------------------------messages style end---------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+

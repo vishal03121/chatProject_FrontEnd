@@ -47,8 +47,8 @@ document.getElementById("msg").addEventListener("keyup", function(event) {
 });
 const getFileType = (filename) => {
   const ext = filename.split(".")[1];
-  if(ext==="png" || ext==="jpg" || ext==="jpeg" ||ext==="gif") return "image";
-  else if(ext==="mp3" || ext==="acc") return "audio";
+  if(ext==="png" || ext==="jpg" || ext==="jpeg") return "image";
+  else if(ext==="mp3") return "audio";
   else if(ext==="mp4" || ext==="mkv") return "video";
 }
 const encodeImageFileAsURL = () => {
@@ -204,13 +204,12 @@ const imageClick = (_src) => {
   document.getElementById("img01").src = _src;
 };
 
-const delMsgConfirm = (msgId) => {
+const delMsgConfirm = () => {
   $("#delMsg").modal("hide");
-  socket.emit('deleteMessage', {msgId, room, token });
+  const msgId = document.getElementById("delMsgId").value;
+  if(msgId!=="") socket.emit('deleteMessage', {msgId, room, token });
 };
 const delMsgModal = (msgId) => {
-  $("#del-btn").on("click", ()=> {
-    delMsgConfirm(msgId);
-  })
+  document.getElementById("delMsgId").setAttribute("value",msgId);
   $("#delMsg").modal("show");
 };

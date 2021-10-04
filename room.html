@@ -66,7 +66,7 @@
     
     <!-- --------------------------------------------message send start------------------------------------------------------- -->
     <div class="input-group p-3 fixed-bottom body-bg-overlay">
-      <input type="file" accept="image/jpg, image/jpeg, image/png, image/gif, video/mp4, audio/mp3, audio/acc, video/mkv" id="inputFileToLoad" onchange="encodeImageFileAsURL()" hidden/>
+      <input type="file" accept="image/jpg, image/jpeg, image/png, video/mp4, video/mkv, audio/mp3" id="inputFileToLoad" onchange="encodeImageFileAsURL()" hidden/>
       <label class="input-group-text btn btn-secondary" for="inputFileToLoad"><i class="fas fa-plus"></i></label>
       <input type="text" class="form-control" placeholder="Type Message" id="msg">
       <span class="input-group-text btn-secondary" id="send" onclick="sendMsg()">Send &nbsp;<i class="fas fa-paper-plane"></i></span>
@@ -101,7 +101,8 @@
               Are You sure you want to Delete This Message?
             </div>
             <div class="modal-footer dark-bg">
-              <button type="button" class="btn btn-success btn-sm my-bg-blue-dark outer-colors" id="del-btn">Confirm</button>
+              <span id="delMsgId" value=""></span>
+              <button type="button" class="btn btn-success btn-sm my-bg-blue-dark outer-colors" id="del-btn" onclick="delMsgConfirm()">Confirm</button>
             </div>
           </div>
         </div>

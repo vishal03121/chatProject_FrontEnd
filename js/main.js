@@ -16,17 +16,16 @@ const capitalize = (word) => {
 socket.on('roomUsers', ({ room, users }) => {
     outputRoomName(room);
     outputUsers(users);
-  });
+});
   
-  // Message from server
-  socket.on('message', (message) => {
-    outputMessage(message);
-  
-    // Scroll down
-    // $('#messageList div:last-child').focus();
-    window.scrollTo(0, $("#scrollMsg")[0].scrollHeight)
-    $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
-  });
+// Message from server
+socket.on('message', (message) => {
+  outputMessage(message);
+  // Scroll down
+  // $('#messageList div:last-child').focus();
+  window.scrollTo(0, $("#scrollMsg")[0].scrollHeight)
+  $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
+});
   
   // Message submit
 document.getElementById("msg").addEventListener("focus", ()=> {
@@ -34,6 +33,11 @@ document.getElementById("msg").addEventListener("focus", ()=> {
   $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
 });
 
+socket.on('deleteMessage', (res) => {
+  document.getElementById(res.messageId).innerHTML = `<p class="text text-del">user deleted this message</p>`;
+  let del = document.getElementById(res.messageId+'1');
+  if(del) del.remove();
+})
 
 document.getElementById("msg").addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
@@ -43,9 +47,9 @@ document.getElementById("msg").addEventListener("keyup", function(event) {
 });
 const getFileType = (filename) => {
   const ext = filename.split(".")[1];
-  if(ext==="png" || ext==="jpg" || ext==="jpeg") return "image";
-  else if(ext==="mp3") return "audio";
-  else if(ext==="mp4") return "video";
+  if(ext==="png" || ext==="jpg" || ext==="jpeg" ||ext==="gif") return "image";
+  else if(ext==="mp3" || ext==="acc") return "audio";
+  else if(ext==="mp4" || ext==="mkv") return "video";
 }
 function encodeImageFileAsURL() {
   var filesSelected = document.getElementById("inputFileToLoad").files;
@@ -65,10 +69,9 @@ function encodeImageFileAsURL() {
   }
   else{
     $("#error").toast('show');
-    window.scrollTo(0,$("#scrollMsg")[0].scrollHeight)
-    $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
     document.getElementById("inputFileToLoad").value='';
-    $("#dropdownMenuButton1").dropdown("hide");
+    $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
+    window.scrollTo(0,$("#scrollMsg")[0].scrollHeight)
   }
 }
 const sendfiles = (fileurl, type) => {
@@ -83,7 +86,6 @@ const sendfiles = (fileurl, type) => {
   document.getElementById("scrollMsg").append(div);
   socket.emit('chatMessage', { type:type, content:fileurl, room, token });
   document.getElementById("inputFileToLoad").value='';
-  $("#dropdownMenuButton1").dropdown("hide");
 }
  const sendMsg = () => {
     // Get message text
@@ -107,32 +109,36 @@ const sendfiles = (fileurl, type) => {
   function outputMessage(message) {
     let para, vh="";
     if(message.type==="text"){
-      para = `<p class="text">${message.text}</p>`;
+      para = `<span id="${message.messageId}">
+      <p class="text">${message.text}</p>
+      </span>
+      `;
     }
     else if(message.type==="image"){
-      para = `<img src="${message.text}" class="img-thumbnail" onclick="imageClick(this.src)">`;
+      para = `<span id="${message.messageId}"><img src="${message.text}" class="img-thumbnail" style="height:30vh;width:30vw;" onclick="imageClick(this.src)"></span>`;
     }
     else if(message.type==="audio"){
-      para = `<audio controls>
+      para = `<span id="${message.messageId}"><audio controls>
             <source src="${message.text}" type="audio/mpeg">
-          </audio>`;
+          </audio></span>`;
       vh='style="max-width: 100vw;"';
     }
     else{
-      para = `
+      para = `<span id="${message.messageId}">
       <video width="320" height="240" controls>
       <source src="${message.text}" type="video/mp4">
-      </video>
+      </video></span>
       `;
       vh='style="max-width: 100vw;"';
     }
     const div = document.createElement('div');
-    let mineClass ="", align = '', mineColor='';
+    let mineClass ="", align = '', mineColor='', delbtn='';
     if(message.socketId === socket.id){
       message.username += " (You)";
       mineClass = " my-class-float-right";
       align = ' align="right"';
       mineColor = ' my-message';
+      delbtn =`<i class="fa fa-trash" id="${message.messageId+'1'}" onclick="delMsgModal('${message.messageId}')"></i>`
     }
     let user = "fa-user";
     if(message.socketId=='bot'){
@@ -150,7 +156,7 @@ const sendfiles = (fileurl, type) => {
       div.innerHTML = `
           <div class="card${mineClass}" ${vh}>
               <div class="card-body${mineColor}" ${vh}>
-                  <p class="meta" ${align}><i class="fas ${user}" style="color:black;"></i> ${message.username}<span> <i>~${message.time}</i></span></p>
+                  <p class="meta" ${align}><i class="fas ${user}" style="color:black;"></i> ${message.username}<span><i>~${message.time}</i> &nbsp ${delbtn}</span></p>
                   ${para}
               </div>
           </div>
@@ -159,7 +165,9 @@ const sendfiles = (fileurl, type) => {
     document.getElementById("messageList").append(div);
     window.scrollTo(0, $("#scrollMsg")[0].scrollHeight)
     $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
-    document.getElementById("spinner").remove()
+    let spin =document.getElementById("spinner");
+    if(spin) spin.remove();
+    // document.getElementById("spinner").remove()
   }
   
   // Add room name to DOM
@@ -197,3 +205,13 @@ const imageClick = (_src) => {
   document.getElementById("img01").src = _src;
 }
 
+const delMsgConfirm = (msgId) => {
+  $("#delMsg").modal("hide");
+  socket.emit('deleteMessage', {msgId, room, token });
+};
+const delMsgModal = (msgId) => {
+  $("#del-btn").on("click", ()=> {
+    delMsgConfirm(msgId);
+  })
+  $("#delMsg").modal("show");
+};

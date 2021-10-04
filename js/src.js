@@ -1,5 +1,5 @@
-
-const validate = (name , inputid, toastid) => {
+const validate = (inputid, toastid) => {
+    const name = document.getElementById(inputid).value;
     if(name.length ==0 ){
         document.getElementById(inputid).focus();
         document.getElementById(toastid+'Inside').innerHTML = "Display Name/ Room Name must not be empty";
@@ -8,8 +8,8 @@ const validate = (name , inputid, toastid) => {
     }
     return true;
 }
-
-const validatePassword = (password, inputid, toastid) => {
+const validatePassword = (inputid, toastid) => {
+    const password = document.getElementById(inputid).value;
     if(password.length < 8 ){
         document.getElementById(inputid).focus();
         document.getElementById(toastid+'Inside').innerHTML = "Password must be 8 characters long.";
@@ -18,14 +18,16 @@ const validatePassword = (password, inputid, toastid) => {
     }
     return true;
 }
-const validatePasswordC = (password, confirmPassowrd, inputid1, inputid2, toastid) => {
+const validatePasswordC = (inputid1, inputid2, toastid) => {
+    const password = document.getElementById(inputid1).value;
+    const confirmPassword = document.getElementById(inputid2).value;
     if(password.length < 8 ){
         document.getElementById(inputid1).focus();
         document.getElementById(toastid+'Inside').innerHTML = "Password must be 8 characters long.";
         $("#"+toastid).toast("show");
         return false;
     }
-    else if(password!==confirmPassowrd){
+    else if(password!==confirmPassword){
         document.getElementById(inputid2).focus();
         document.getElementById(toastid+'Inside').innerHTML = "Confrim Password and Password Must be same!";
         $("#"+toastid).toast("show");
@@ -34,17 +36,25 @@ const validatePasswordC = (password, confirmPassowrd, inputid1, inputid2, toasti
     return true;
 }
 
-
+$("#displayName").on("blur", ()=>{
+    validate("displayName","joinToast");
+});
+$("#roomName").on("blur", ()=>{
+    validate("roomName","joinToast");
+});
+$("#password").on("blur", ()=>{
+    validatePassword("password","joinToast");
+});
 const joinRoomBtn = () => {
     const name = document.getElementById("displayName").value;
     const room = document.getElementById("roomName").value.toLowerCase();
     const password = document.getElementById("password").value;
-    let valid = validate(name, "displayName", "joinToast")
+    let valid = validate("displayName", "joinToast")
     if(valid){
-        valid = validate(room, "roomName", "joinToast")
+        valid = validate("roomName", "joinToast")
     }
     if(valid){
-        valid = validatePassword(password, "password", "joinToast")
+        valid = validatePassword("password", "joinToast")
     }
     if(valid){
         let status;
@@ -79,18 +89,28 @@ const joinRoomBtn = () => {
         });
     }
 }
-
+$("#displayNameC").on("blur", ()=>{
+    validate("displayNameC","createToast");
+});
+$("#roomNameC").on("blur", ()=>{
+    validate("roomNameC","createToast");
+});
+$("#passwordC").on("blur", ()=>{
+    validatePassword("passwordC","createToast");
+});
+$("#confirmPassowrd").on("blur", ()=>{
+    validatePasswordC("passwordC","confirmPassowrd","createToast");
+});
 const createRoom = () => {
     const name = document.getElementById("displayNameC").value;
     const room = document.getElementById("roomNameC").value.toLowerCase();
     const password = document.getElementById("passwordC").value;
-    const confirmPassowrd = document.getElementById("confirmPassowrd").value;
-    let valid = validate(name, "displayNameC", "createToast")
+    let valid = validate("displayNameC", "createToast")
     if(valid){
-        valid = validate(room, "roomNameC", "createToast")
+        valid = validate("roomNameC", "createToast")
     }
     if(valid){
-        valid = validatePasswordC(password, confirmPassowrd, "passwordC", "confirmPassowrd", "createToast")
+        valid = validatePasswordC("passwordC", "confirmPassowrd", "createToast")
     }
     if(valid){
         let status;

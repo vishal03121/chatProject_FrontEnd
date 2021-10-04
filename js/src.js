@@ -147,49 +147,49 @@ const createRoom = () => {
 }
 
 if(document.getElementById("password"))
-document.getElementById("password").addEventListener("keyup", function(event) {
+document.getElementById("password").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
         document.getElementById("join").click();
     }
 });
 if(document.getElementById("roomName"))
-document.getElementById("roomName").addEventListener("keyup", function(event) {
+document.getElementById("roomName").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
         document.getElementById("password").focus();
     }
 });
 if(document.getElementById("displayName"))
-document.getElementById("displayName").addEventListener("keyup", function(event) {
+document.getElementById("displayName").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
         document.getElementById("roomName").focus();
     }
 });
 if(document.getElementById("displayNameC"))
-document.getElementById("displayNameC").addEventListener("keyup", function(event) {
+document.getElementById("displayNameC").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
         document.getElementById("roomNameC").focus();
     }
 });
 if(document.getElementById("roomNameC"))
-document.getElementById("roomNameC").addEventListener("keyup", function(event) {
+document.getElementById("roomNameC").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
         document.getElementById("passwordC").focus();
     }
 });
 if(document.getElementById("passwordC"))
-document.getElementById("passwordC").addEventListener("keyup", function(event) {
+document.getElementById("passwordC").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
         document.getElementById("confirmPassowrd").focus();
     }
 });
 if(document.getElementById("confirmPassowrd"))
-document.getElementById("confirmPassowrd").addEventListener("keyup", function(event) {
+document.getElementById("confirmPassowrd").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
         document.getElementById("create").click();

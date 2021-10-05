@@ -36,25 +36,16 @@ const validatePasswordC = (inputid1, inputid2, toastid) => {
     return true;
 }
 
-$("#displayName").on("blur", ()=>{
-    validate("displayName","joinToast");
-});
-$("#roomName").on("blur", ()=>{
-    validate("roomName","joinToast");
-});
-$("#password").on("blur", ()=>{
-    validatePassword("password","joinToast");
-});
 const joinRoomBtn = () => {
     const name = document.getElementById("displayName").value;
     const room = document.getElementById("roomName").value.toLowerCase();
     const password = document.getElementById("password").value;
-    let valid = validate("displayName", "joinToast")
+    let valid = validate("displayName", "joinToast");
     if(valid){
-        valid = validate("roomName", "joinToast")
+        valid = validate("roomName", "joinToast");
     }
     if(valid){
-        valid = validatePassword("password", "joinToast")
+        valid = validatePassword("password", "joinToast");
     }
     if(valid){
         let status;
@@ -89,28 +80,16 @@ const joinRoomBtn = () => {
         });
     }
 }
-$("#displayNameC").on("blur", ()=>{
-    validate("displayNameC","createToast");
-});
-$("#roomNameC").on("blur", ()=>{
-    validate("roomNameC","createToast");
-});
-$("#passwordC").on("blur", ()=>{
-    validatePassword("passwordC","createToast");
-});
-$("#confirmPassowrd").on("blur", ()=>{
-    validatePasswordC("passwordC","confirmPassowrd","createToast");
-});
 const createRoom = () => {
     const name = document.getElementById("displayNameC").value;
     const room = document.getElementById("roomNameC").value.toLowerCase();
     const password = document.getElementById("passwordC").value;
-    let valid = validate("displayNameC", "createToast")
+    let valid = validate("displayNameC", "createToast");
     if(valid){
-        valid = validate("roomNameC", "createToast")
+        valid = validate("roomNameC", "createToast");
     }
     if(valid){
-        valid = validatePasswordC("passwordC", "confirmPassowrd", "createToast")
+        valid = validatePasswordC("passwordC", "confirmPassowrd", "createToast");
     }
     if(valid){
         let status;
@@ -145,54 +124,60 @@ const createRoom = () => {
         });
     }
 }
-
-if(document.getElementById("password"))
-document.getElementById("password").addEventListener("keyup", (event) => {
+if(document.getElementById("displayName"))
+document.getElementById("displayName").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
-        document.getElementById("join").click();
+        const valid = validate("displayName", "joinToast");
+        if(valid) document.getElementById("roomName").focus();
     }
 });
 if(document.getElementById("roomName"))
 document.getElementById("roomName").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
-        document.getElementById("password").focus();
+        const valid = validate("roomName", "joinToast");
+        if(valid) document.getElementById("password").focus();
     }
 });
-if(document.getElementById("displayName"))
-document.getElementById("displayName").addEventListener("keyup", (event) => {
+if(document.getElementById("password"))
+document.getElementById("password").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
-        document.getElementById("roomName").focus();
+        const valid = validatePassword("password", "joinToast");
+        if(valid) document.getElementById("join").click();
     }
 });
 if(document.getElementById("displayNameC"))
 document.getElementById("displayNameC").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
-        document.getElementById("roomNameC").focus();
+        const valid = validate("displayNameC", "createToast")
+        if(valid) document.getElementById("roomNameC").focus();
     }
 });
 if(document.getElementById("roomNameC"))
 document.getElementById("roomNameC").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
-        document.getElementById("passwordC").focus();
+        const valid = validate("roomNameC", "createToast");
+        if(valid) document.getElementById("passwordC").focus();
     }
 });
 if(document.getElementById("passwordC"))
 document.getElementById("passwordC").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
-        document.getElementById("confirmPassowrd").focus();
+        const valid = validatePassword("passwordC","createToast");
+        if(valid) document.getElementById("confirmPassowrd").focus();
     }
 });
 if(document.getElementById("confirmPassowrd"))
 document.getElementById("confirmPassowrd").addEventListener("keyup", (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
-        document.getElementById("create").click();
+        const valid = validatePasswordC("passwordC", "confirmPassowrd", "createToast");
+        if(valid) document.getElementById("create").click();
     }
 });
 

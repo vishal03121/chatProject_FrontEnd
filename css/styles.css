@@ -82,6 +82,9 @@
   color: #ffffff;
 }
 /* for zooming on hovering in images */
+.fa-plus-square, .fa-person-booth, .fa-comment-dots, .fa-plus, .fa-paper-plane{
+  color:#ffffff;
+}
 .zoom {
   transition: transform 0.1s; /* Animation */
 }
@@ -108,7 +111,10 @@
   align-items: center;
   position: relative;
 }
-
+.msg-text{
+  white-space: pre-wrap;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+}
 .cover-caption {
   width: 100%;
   position: relative;
@@ -131,6 +137,9 @@ form:before {
 /*--------------------------messages style start---------------------------------*/
 .text {
   margin-bottom: 0px;
+}
+.msg-box{
+  resize: none;
 }
 .chat-message {
   padding: 4px;

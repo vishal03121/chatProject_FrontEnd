@@ -1,68 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./images/logos_images/icon.ico">
-    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./images/logos_images/icon.ico" />
+    <link
+      rel="stylesheet"
+      href="./bootstrap-5.0.2-dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./fontawesome/css/all.min.css" />
     <title>WaClone</title>
-</head>
-<body>
-    
-
-
+  </head>
+  <body>
     <section class="min-vh-100 cover">
-        <div class="cover-caption">
-            <h1 class="display-4 py-2 text-truncate text-white">JOIN ROOM</h1>
-            <div class="container">
-                <div class="row text-white">
-                    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
-                        <div class="px-2">
-                            <form>
-                                <center>
-                                    <div class="form-group mb-4">
-                                        <div class="toast align-items-center text-white outer-colors hide" id="joinToast" role="alert" aria-live="assertive" aria-atomic="true">
-                                            <div class="d-flex">
-                                              <div class="toast-body outer-colors" id="joinToastInside">
-                                              Hello, world! This is a toast message.
-                                              </div>
-                                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                                            </div>
-                                          </div>
-                                      </div>
-                                </center>
-                                <div class="form-group mb-4">
-                                    <input type="text" name="username" class="form-control" placeholder="Display Name" id="displayName">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <input type="text" name="room" class="form-control" placeholder="Room Name" id="roomName">
-                                </div>
-                                <div class="form-group mb-4">
-                                    <input type="password" name="password" class="form-control" placeholder="Room Password" id="password">
-                                </div>
-
-                                <a href="create.html" class="btn btn-success btn-sm px-4 outer-colors my-class-float-left">Create Room</a>
-                                <button type="button" class="btn btn-success btn-sm px-4 outer-colors my-class-float-right" onclick="joinRoomBtn()" id="join">Join</button>
-                                <!-- <button type="button" class="btn btn-primary btn-sm px-4 my-bg-blue-dark my-class-float-right" onclick="joinRoomBtn()">Join</button> -->
-                            </form>
+      <div class="cover-caption">
+        <h1 class="display-4 py-2 text-truncate text-white">JOIN ROOM</h1>
+        <div class="container">
+          <div class="row text-white">
+            <div
+              class="
+                col-xl-5 col-lg-6 col-md-8 col-sm-10
+                mx-auto
+                text-center
+                form
+                p-4
+              "
+            >
+              <div class="px-2">
+                <form>
+                  <center>
+                    <div class="form-group mb-4">
+                      <div
+                        class="
+                          toast
+                          align-items-center
+                          text-white
+                          outer-colors
+                          hide
+                        "
+                        id="joinToast"
+                        role="alert"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                      >
+                        <div class="d-flex">
+                          <div
+                            class="toast-body outer-colors"
+                            id="joinToastInside"
+                          >
+                            Hello, world! This is a toast message.
+                          </div>
+                          <button
+                            type="button"
+                            class="btn-close btn-close-white me-2 m-auto"
+                            data-bs-dismiss="toast"
+                            aria-label="Close"
+                          ></button>
                         </div>
+                      </div>
                     </div>
-                </div>
+                  </center>
+                  <div class="form-group mb-4">
+                    <input
+                      type="text"
+                      name="username"
+                      class="form-control"
+                      placeholder="Display Name"
+                      id="displayName"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <input
+                      type="text"
+                      name="room"
+                      class="form-control"
+                      placeholder="Room Name"
+                      id="roomName"
+                    />
+                  </div>
+                  <div class="form-group mb-4">
+                    <input
+                      type="password"
+                      name="password"
+                      class="form-control"
+                      placeholder="Room Password"
+                      id="password"
+                    />
+                  </div>
+
+                  <a
+                    href="create.html"
+                    class="
+                      btn btn-success btn-sm
+                      px-4
+                      outer-colors
+                      my-class-float-left
+                    "
+                    >Create Room&nbsp;<i class="far fa-plus-square"></i
+                  ></a>
+                  <button
+                    type="button"
+                    class="
+                      btn btn-success btn-sm
+                      px-4
+                      outer-colors
+                      my-class-float-right
+                    "
+                    onclick="joinRoomBtn()"
+                    id="join"
+                  >
+                    Join&nbsp;<i class="fas fa-person-booth"></i>
+                  </button>
+                  <!-- <button type="button" class="btn btn-primary btn-sm px-4 my-bg-blue-dark my-class-float-right" onclick="joinRoomBtn()">Join</button> -->
+                </form>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
-      
-      
 
-
-
-
-
-
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
     <script src="./jquery/jquery.min.js"></script>
     <script src="./bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
     <script src="./js/src.js"></script>
-</body>
+  </body>
 </html>

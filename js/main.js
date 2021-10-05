@@ -40,12 +40,12 @@ socket.on('deleteMessage', (res) => {
   if(del) del.remove();
 })
 
-document.getElementById("msg").addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-      event.preventDefault();
-      document.getElementById("send").click();
-  }
-});
+// document.getElementById("msg").addEventListener("keyup", function(event) {
+//   if (event.keyCode === 13) {
+//       event.preventDefault();
+//       document.getElementById("send").click();
+//   }
+// });
 const getFileType = (filename) => {
   const ext = filename.split(".")[1];
   if(ext==="png" || ext==="jpg" || ext==="jpeg") return "image";
@@ -116,7 +116,7 @@ const outputMessage = (message) => {
   let para, vh="";
   if(message.type==="text"){
     para = `<span id="${message.messageId}">
-    <p class="text">${message.text}</p>
+    <p class="text msg-text">${message.text}</p>
     </span>
     `;
   }

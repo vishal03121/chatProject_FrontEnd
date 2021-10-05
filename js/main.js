@@ -34,7 +34,8 @@ document.getElementById("msg").addEventListener("focus", ()=> {
 });
 
 socket.on('deleteMessage', (res) => {
-  document.getElementById(res.messageId).innerHTML = `<p class="text text-del">user deleted this message</p>`;
+  const msg = document.getElementById(res.messageId);
+  if(msg) msg.innerHTML = `<p class="text text-del">user deleted this message</p>`;
   let del = document.getElementById(res.messageId+'1');
   if(del) del.remove();
 })
@@ -87,6 +88,10 @@ const sendfiles = (fileurl, type) => {
   socket.emit('chatMessage', { type:type, content:fileurl, room, token });
   document.getElementById("inputFileToLoad").value='';
 }
+const convToString = (mystring) => {
+	return mystring.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+};
+
 const sendMsg = () => {
   // Get message text
   window.scrollTo(0,$("#scrollMsg")[0].scrollHeight)
@@ -98,6 +103,7 @@ const sendMsg = () => {
   }
 
   // Emit message to server
+  msg = convToString(msg);
   socket.emit('chatMessage', {type:"text", content:msg, room, token });
 
   // Clear input

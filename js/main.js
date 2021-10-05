@@ -140,7 +140,7 @@ const outputMessage = (message) => {
   const div = document.createElement('div');
   let mineClass ="", align = '', mineColor='', delbtn='';
   if(message.socketId === socket.id){
-    message.username += " (You)";
+    // message.username += " (You)";
     mineClass = " my-class-float-right";
     align = ' align="right"';
     mineColor = ' my-message';

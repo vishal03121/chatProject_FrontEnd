@@ -9,9 +9,15 @@ if(!username || !room || !token) {
 socket.emit('joinRoom', { username, room, token });
 
 const capitalize = (word) => {
-    return word[0].toUpperCase() + word.substring(1).toLowerCase();
+  return word[0].toUpperCase() + word.substring(1).toLowerCase();
+}
+//Scroll view
+const scroll = () => {
+  if(Math.abs($("#scrollMsg")[0].scrollHeight - $("#scrollMsg").scrollTop()- $("#scrollMsg").height()) <= 200){
+    $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
+    window.scrollTo(0,$("#scrollMsg")[0].scrollHeight)
   }
-
+};
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
     outputRoomName(room);
@@ -22,16 +28,17 @@ socket.on('roomUsers', ({ room, users }) => {
 socket.on('message', (message) => {
   outputMessage(message);
   // Scroll down
-  // $('#messageList div:last-child').focus();
-  window.scrollTo(0, $("#scrollMsg")[0].scrollHeight)
-  $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
+  scroll();
 });
-  
+
+
+
+
   // Message submit
-document.getElementById("msg").addEventListener("focus", ()=> {
-  window.scrollTo(0, $("#scrollMsg")[0].scrollHeight)
-  $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
-});
+// document.getElementById("msg").addEventListener("focus", ()=> {
+//   window.scrollTo(0, $("#scrollMsg")[0].scrollHeight)
+//   $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
+// });
 
 socket.on('deleteMessage', (res) => {
   const msg = document.getElementById(res.messageId);
@@ -52,6 +59,7 @@ const getFileType = (filename) => {
   else if(ext==="mp3") return "audio";
   else if(ext==="mp4" || ext==="mkv") return "video";
 }
+
 const encodeImageFileAsURL = () => {
   var filesSelected = document.getElementById("inputFileToLoad").files;
   const filename = $('#inputFileToLoad').val();
@@ -94,8 +102,7 @@ const convToString = (mystring) => {
 
 const sendMsg = () => {
   // Get message text
-  window.scrollTo(0,$("#scrollMsg")[0].scrollHeight)
-  $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
+  scroll();
   let msg = document.getElementById("msg").value;
   msg = msg.trim();
   if (!msg) {
@@ -113,6 +120,7 @@ const sendMsg = () => {
   
 // Output message to DOM
 const outputMessage = (message) => {
+  scroll();
   let para, vh="";
   if(message.type==="text"){
     para = `<span id="${message.messageId}">
@@ -169,8 +177,7 @@ const outputMessage = (message) => {
     `;
   }
   document.getElementById("messageList").append(div);
-  window.scrollTo(0, $("#scrollMsg")[0].scrollHeight)
-  $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
+  scroll();
   let spin =document.getElementById("spinner");
   if(spin) spin.remove();
   // document.getElementById("spinner").remove()

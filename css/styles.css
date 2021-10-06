@@ -20,7 +20,7 @@
   background: url("../images/logos_images/bg2.png");
 }
 #scrollMsg {
-  height: 82vh;
+  height: 80vh;
 }
 
 /* personal background and hover styles */
@@ -139,7 +139,8 @@ form:before {
   margin-bottom: 0px;
 }
 .msg-box{
-  resize: none;
+  /* resize: none; */
+  max-height: 80px;
 }
 .chat-message {
   padding: 4px;

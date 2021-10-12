@@ -55,7 +55,7 @@ socket.on('deleteMessage', (res) => {
 // });
 const getFileType = (filename) => {
   const ext = filename.split(".")[1];
-  if(ext==="png" || ext==="jpg" || ext==="jpeg") return "image";
+  if(ext==="png" || ext==="jpg" || ext==="jpeg" || ext=="webp") return "image";
   else if(ext==="mp3") return "audio";
   else if(ext==="mp4" || ext==="mkv") return "video";
 }

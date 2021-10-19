@@ -13,10 +13,8 @@ const capitalize = (word) => {
 }
 //Scroll view
 const scroll = () => {
-  if(Math.abs($("#scrollMsg")[0].scrollHeight - $("#scrollMsg").scrollTop()- $("#scrollMsg").height()) <= 200){
     $("#scrollMsg").scrollTop($("#scrollMsg")[0].scrollHeight);
     window.scrollTo(0,$("#scrollMsg")[0].scrollHeight)
-  }
 };
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {

@@ -49,7 +49,7 @@ const joinRoomBtn = () => {
     }
     if(valid){
         let status;
-        fetch("https://wacloneapi.vercel.app/joinRoom", {
+        fetch("https://1gl145.sse.codesandbox.io/joinRoom", {
         method: "PUT",
         body: JSON.stringify({
             room: room,
@@ -93,7 +93,7 @@ const createRoom = () => {
     }
     if(valid){
         let status;
-        fetch("https://wacloneapi.vercel.app/createRoom", {
+        fetch("https://1gl145.sse.codesandbox.io/createRoom", {
         method: "PUT",
         body: JSON.stringify({
             room: room,
